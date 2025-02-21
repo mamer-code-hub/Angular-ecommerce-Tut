@@ -1,0 +1,9 @@
+img {
+  width: 200px !important;
+  height: 200px !important;
+  border-radius: 50%;
+  margin: auto;
+  /* object-fit: contain; */
+}
+
+

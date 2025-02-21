@@ -1,0 +1,18 @@
+<section class="py-10 bg-gray-200">
+
+  <owl-carousel-o [options]="customOptions" >
+
+    <!-- <ng-container *ngFor="let cat of categories"> -->
+      @for (cat of categories; track cat._id) {
+
+        <ng-template carouselSlide [id]="cat._id">
+          <div class="cursor-pointer mx-5" [routerLink]="['/category',cat._id]">
+            <img [src]="cat.image" [alt]="cat.name" [title]="cat.slug">
+            <h5 class="text-center text-[18px] ">{{cat.name}}</h5>
+          </div>
+        </ng-template>
+      }
+    <!-- </ng-container> -->
+
+  </owl-carousel-o>
+</section>

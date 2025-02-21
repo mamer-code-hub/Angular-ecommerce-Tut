@@ -1,0 +1,45 @@
+<div
+  class="absolute z-10 visible inline-block text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-xs w-90 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-400">
+  <div class="p-3 space-y-2">
+    <h3 class="font-semibold text-gray-900 dark:text-white">Must have at least 8 characters</h3>
+
+    <p>It’s better to have:</p>
+    <ul class="capitalize">
+      <li class="flex items-center mb-1">
+
+        <i [class]="{
+                      'fa-check':getPassUpperCase(control!)&&getPassLowerCase(control!),
+                      'text-green-400':getPassUpperCase(control!)&&getPassLowerCase(control!),
+                      'dark:text-green-500':getPassUpperCase(control!)&&getPassLowerCase(control!),
+                    }" class="fa-solid fa-xmark w-3.5 h-3.5 me-2 text-gray-300 dark:text-gray-400"></i>
+        min. one upper(A-Z) and lower case letter(a-z)
+      </li>
+      <li class="flex items-center mb-1">
+        <i [class]="{
+                      'fa-check':getPassNumber(control!),
+                      'text-green-400':getPassNumber(control!),
+                      'dark:text-green-500':getPassNumber(control!),
+
+                    }" class="fa-solid fa-xmark w-3.5 h-3.5 me-2 text-gray-300 dark:text-gray-400"></i>
+
+        min. one number (0-9) and one special character (#?!$%^&*-).
+      </li>
+      <li class="flex items-center">
+        <i [class]="{
+                      'fa-check':checkPasswordStrength(control!),
+                      'text-green-400':checkPasswordStrength(control!),
+                      'dark:text-green-500':checkPasswordStrength(control!),
+
+                    }" class="fa-solid fa-xmark w-3.5 h-3.5 me-2 text-gray-300 dark:text-gray-400"></i>
+
+        A longer password (min. 12 chars.)
+      </li>
+    </ul>
+  </div>
+
+
+
+
+
+
+</div>

@@ -1,0 +1,32 @@
+<section class="py-10">
+  <div class="container max-w-screen-xl mx-auto ">
+    <div class="flex items-center justify-between">
+      <h2 class="header">
+        Our <span class="text-nav ms-1">Brands</span>
+      </h2>
+
+    </div>
+
+    <div class="grid gap-10 grid-cols-12">
+
+      @for (brand of brands; track brand._id) {
+      <div class="sm:cols-span-6 cursor-pointer md:col-span-4 col-span-12">
+
+        <app-brand-card [brand]="brand" />
+      </div>
+      }
+    </div>
+
+
+
+
+    <app-pagination [totalPages]="totalPages" (currentPageChange)="getPage($event)" />
+
+
+
+
+
+
+  </div>
+
+</section>

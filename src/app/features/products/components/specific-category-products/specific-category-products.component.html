@@ -1,0 +1,56 @@
+@if (catProducts.length > 0) {
+
+<section class="py-10">
+  <div class="container max-w-screen-xl mx-auto ">
+    <div class="flex items-center justify-between">
+      <h2 class="header">
+        <span class="text-nav ms-2"> {{catName}} </span>
+      </h2>
+      <button [routerLink]="['/category',catId]" type="button" class="view-all">shop All</button>
+
+    </div>
+
+    <!-- <div class="grid grid-cols-12 gap-5">
+      @for (product of catProducts; track product._id) {
+      <div id="product-card"
+        class="rounded-md group cursor-pointer overflow-hidden border border-gray-300 px-2 pt-2 pb-4 shadow lg:col-span-3 md:col-span-4 col-span-12">
+
+        <app-product-card [product]="product" />
+      </div>
+      }
+    </div> -->
+
+
+
+
+    <owl-carousel-o [options]="customOptions">
+
+      @for (product of catProducts; track product._id) {
+
+      <ng-template carouselSlide [id]="product._id">
+        <div id="product-card"
+          class="rounded-md group cursor-pointer overflow-hidden border border-gray-300 px-2 pt-2 pb-4 shadow">
+
+          <app-product-card (addToCart)="addProductToCart($event)" [product]="product" />
+        </div>
+      </ng-template>
+      }
+
+    </owl-carousel-o>
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+</section>
+
+}

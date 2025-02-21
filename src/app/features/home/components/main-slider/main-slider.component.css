@@ -1,0 +1,23 @@
+.owl-carousel {
+  height: 400px; /* Set desired height */
+}
+
+.owl-carousel .owl-stage-outer {
+  height: 100%;
+}
+
+.owl-carousel .owl-stage {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.owl-carousel .owl-item {
+  height: 100%;
+}
+
+.carousel-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures images cover the entire space */
+}

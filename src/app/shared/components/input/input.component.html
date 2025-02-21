@@ -1,0 +1,7 @@
+@let control = formGroup.get(formCName);
+
+<input [class]="{
+                'invalid-input':control?.errors && (control?.touched || control?.errors && control?.dirty),
+                'valid-input': !control?.errors && (control?.touched || control?.errors && control?.dirty)
+              }" type="{{type}}"   class="form-input" placeholder="{{placeholder}}"
+                 />

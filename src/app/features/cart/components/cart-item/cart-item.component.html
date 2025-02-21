@@ -1,0 +1,50 @@
+<div class="rounded-lg border mb-2 border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 md:p-6">
+  <div class="space-y-4 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0">
+    <a [routerLink]="['/details',cartItem.product._id]" class="shrink-0 md:order-1">
+      <img class="h-20 w-20" [src]="cartItem.product.imageCover"
+        alt="{{cartItem.product.title}}" />
+
+    </a>
+
+    <label for="counter-input" class="sr-only">Choose quantity:</label>
+    <div class="flex items-center justify-between md:order-3 md:justify-end">
+      <div class="flex items-center">
+        <button type="button" (click)="cartCountMinus()"
+          class="inline-flex h-7 w-7 cursor-pointer shrink-0 items-center justify-center rounded-md border border-gray-300 bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700">
+          <i class="fa-solid fa-minus"></i>
+        </button>
+
+          <span class="w-10 shrink-0 border-0 bg-transparent text-center text-[18px] font-medium text-gray-900 focus:outline-none focus:ring-0 dark:text-white">
+            {{cartItem.count}}
+          </span>
+        <button type="button" (click)="cartCountPlus()"
+          class="inline-flex h-7 w-7 cursor-pointer shrink-0 items-center justify-center rounded-md border border-gray-300 bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700">
+          <i class="fa-solid fa-plus"></i>
+        </button>
+      </div>
+      <div class="text-end md:order-4 md:w-32">
+        <p class="text-base font-bold text-gray-900 dark:text-white">{{cartItem.price}}EGP</p>
+      </div>
+    </div>
+
+    <div class="w-full  flex flex-col  min-w-0 flex-1 space-y-4 md:order-2 md:max-w-md">
+      <a [routerLink]="['/details',cartItem.product._id]" class="text-base mb-4 font-medium text-gray-900 hover:underline dark:text-white">PC system All in
+        {{cartItem.product.title}}
+       </a>
+
+      <div class="flex items-center gap-4">
+        <button type="button"
+          class="inline-flex gap-1 no-underline items-center text-sm font-medium text-gray-500 hover:text-gray-900 cursor-pointer dark:text-gray-400 dark:hover:text-white">
+          <i class="fa-regular fa-heart"></i>
+          Add to Favorites
+        </button>
+
+        <button type="button" (click)="onRemoveCartItem()"
+          class="inline-flex  gap-1 cursor-pointer items-center text-sm font-medium text-red-600  dark:text-red-500">
+          <i class="fa-solid fa-xmark"></i>
+          Remove
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

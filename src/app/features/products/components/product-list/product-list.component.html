@@ -1,0 +1,38 @@
+<section class="py-10">
+  <div class="container max-w-screen-xl mx-auto ">
+    <div class="flex items-center justify-between">
+      <h2 class="header">
+        Our <span class="text-nav ms-1">Products</span>
+      </h2>
+
+    </div>
+
+    <div class="grid grid-cols-12 gap-5">
+      @for (product of products; track product._id) {
+      <div id="product-card"
+        class="rounded-md group cursor-pointer overflow-hidden border border-gray-300 px-2 pt-2 pb-4 shadow lg:col-span-3 md:col-span-4 col-span-12">
+
+        <app-product-card (addToCart)="addProductToCart($event)" [product]="product" />
+      </div>
+      }
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+    <app-pagination [totalPages]="totalPages" (currentPageChange)="getPage($event)"  />
+
+
+
+
+
+  </div>
+
+</section>

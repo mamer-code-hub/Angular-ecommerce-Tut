@@ -1,0 +1,28 @@
+<nav aria-label="Page navigation example bg-pink-500">
+  <ul class="flex items-center -space-x-px w-fit mx-auto mt-10  h-8 text-sm">
+    <li (click)="getPreviousPage()">
+      <a
+        class="flex cursor-pointer items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+        <span class="sr-only">Previous</span>
+        <i class="fa-solid fa-angles-left"></i>
+      </a>
+    </li>
+    @for (page of getPageNums(); track $index) {
+    <li (click)="getSelectedPage($event)">
+      <a aria-current="page" [class]="{
+            'border-2': currentPage === page,
+            'border-gray-400': currentPage === page,
+          }"
+        class="z-10 flex items-center cursor-pointer justify-center px-3 h-8 leading-tight  bg-white hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white">{{page}}</a>
+    </li>
+    }
+    <li (click)="getNextPage()">
+      <a
+        class="flex cursor-pointer items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+        <span class="sr-only">Next</span>
+        <i class="fa-solid fa-angles-right"></i>
+
+      </a>
+    </li>
+  </ul>
+</nav>
