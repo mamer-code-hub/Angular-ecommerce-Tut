@@ -6,10 +6,11 @@ import { CartItemComponent } from "../cart-item/cart-item.component";
 import { redirectToLogin } from '../../../../shared/helpers/redirect';
 import { AuthService } from '../../../Authentication/services/auth.service';
 import { Subscription } from 'rxjs';
+import { CartEmptyComponent } from "../cart-empty/cart-empty.component";
 
 @Component({
   selector: 'app-cart-page',
-  imports: [CartItemComponent, RouterLink],
+  imports: [CartItemComponent, RouterLink, CartEmptyComponent],
   templateUrl: './cart-page.component.html',
   styleUrl: './cart-page.component.css'
 })

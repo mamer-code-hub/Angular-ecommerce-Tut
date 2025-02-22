@@ -6,9 +6,10 @@ import { customOptions } from '../../../../shared/helpers/owl.options';
 import { RouterLink } from '@angular/router';
 import { ProductsService } from '../../../products/services/products.service';
 import { CartService } from '../../../cart/services/cart.service';
-import { addToCart } from '../../../../shared/helpers/operations';
+import { addToCart, addToWish } from '../../../../shared/helpers/operations';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../../Authentication/services/auth.service';
+import { WishlistService } from '../../../wishlist/services/wishlist.service';
 
 @Component({
   selector: 'specific-category-products',
@@ -21,6 +22,7 @@ export class SpecificCategoryProductsComponent {
   private readonly productsService = inject(ProductsService)
   private readonly toaster = inject(ToastrService)
   private readonly auth = inject(AuthService)
+  private readonly wishService = inject(WishlistService)
   @Input() catId!: string;
   catName!: string
 
@@ -52,6 +54,19 @@ export class SpecificCategoryProductsComponent {
     })
 
 
+  }
+  addProductToWish(id: string) {
+    this.auth.verifyToken().subscribe({
+      next: (res) => {
+
+        this.sub = addToWish(id, this.toaster, this.wishService)
+
+      },
+      error: (err) => {
+        this.toaster.info('Please login to add products to wishlist')
+
+      }
+    })
   }
   ngOnDestroy(): void {
     if (this.sub) {

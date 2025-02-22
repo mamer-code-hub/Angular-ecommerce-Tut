@@ -5,9 +5,10 @@ import { Iproduct } from '../../../products/models/iproduct';
 import { ProductsService } from '../../../products/services/products.service';
 import { ProductCardComponent } from "../../../products/components/product-card/product-card.component";
 import { ToastrService } from 'ngx-toastr';
-import { addToCart } from '../../../../shared/helpers/operations';
+import { addToCart, addToWish } from '../../../../shared/helpers/operations';
 import { CartService } from '../../../cart/services/cart.service';
 import { AuthService } from '../../../Authentication/services/auth.service';
+import { WishlistService } from '../../../wishlist/services/wishlist.service';
 
 @Component({
   selector: 'app-brand-products',
@@ -22,6 +23,7 @@ export class BrandProductsComponent {
   private readonly productsService = inject(ProductsService)
   private readonly toaster = inject(ToastrService)
   private readonly auth = inject(AuthService)
+  private readonly wishService = inject(WishlistService)
   brandId!: string | null
   brandProds: Iproduct[] = [];
   totalPages!: number;
@@ -59,12 +61,26 @@ export class BrandProductsComponent {
         this.sub = addToCart(id, this.toaster, this.cartService)
       },
       error: (err) => {
-        this.toaster.warning('Please login to add products to cart')
+        this.toaster.info('Please login to add products to cart')
 
       }
     })
 
 
+  }
+
+  addProductToWish(id: string) {
+    this.auth.verifyToken().subscribe({
+      next: (res) => {
+
+        this.sub = addToWish(id, this.toaster, this.wishService)
+
+      },
+      error: (err) => {
+        this.toaster.info('Please login to add products to wishlist')
+
+      }
+    })
   }
 
 

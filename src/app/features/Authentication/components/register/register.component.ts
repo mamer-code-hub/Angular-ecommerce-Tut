@@ -19,51 +19,59 @@ import { redirectToHome } from '../../../../shared/helpers/redirect';
     ValidationHintComponent,
     InvalidInputDirective],
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrl: './register.component.css'
 })
 export class RegisterComponent {
-  private readonly fb = inject(FormBuilder);
-  private readonly authService = inject(AuthService);
-  private readonly router = inject(Router);
+  private readonly fb = inject(FormBuilder)
+  private readonly authService = inject(AuthService)
+  private readonly router = inject(Router)
   isLoading: boolean = false;
   resMsg!: string;
   tooltip: boolean = false;
-  authForm!: FormGroup;
+  authForm!: FormGroup
+
 
   createForm() {
     this.authForm = this.fb.group({
       name: [null, globalValidator.nameValidate],
       email: [null, globalValidator.emailValidate],
       password: [null, globalValidator.passwordValidate],
-      rePassword: [null, globalValidator.passwordValidate]
-    }, {
-      validators: passwordMisMatch('password', 'rePassword')
-    });
+      rePassword: ['', Validators.required]
+    }, { validators: [passwordMisMatch] })
+
   }
 
+
   register() {
+    console.log(this.authForm);
     if (this.authForm.invalid || this.isLoading) {
       this.authForm.markAllAsTouched();
-      this.authForm.get('rePassword')?.setValue("");
+      this.authForm.get('rePassword')?.setValue("")
       return;
     }
 
     this.isLoading = true;
-    const user = this.authForm.value as RegisterUser;
+    const user = ((this.authForm.value) as unknown) as RegisterUser
     this.authService.register(user).subscribe({
       next: (res) => {
         this.isLoading = false;
-        this.router.navigate(['/login']);
+        this.router.navigate(['/login'])
       },
       error: ({ error }) => {
-        this.resMsg = error.message;
+        this.resMsg = error.message
         this.isLoading = false;
       }
-    });
+    })
   }
 
   ngOnInit() {
-    redirectToHome(this.authService);
-    this.createForm();
+    redirectToHome(this.authService)
+    this.createForm()
   }
+
+
+
+  // get
+
+
 }

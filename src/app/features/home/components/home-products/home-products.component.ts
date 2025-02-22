@@ -6,8 +6,9 @@ import { ProductCardComponent } from "../../../products/components/product-card/
 import { RouterLink } from '@angular/router';
 import { CartService } from '../../../cart/services/cart.service';
 import { ToastrService } from 'ngx-toastr';
-import { addToCart } from '../../../../shared/helpers/operations';
+import { addToCart, addToWish } from '../../../../shared/helpers/operations';
 import { AuthService } from '../../../Authentication/services/auth.service';
+import { WishlistService } from '../../../wishlist/services/wishlist.service';
 
 @Component({
   selector: 'app-home-products',
@@ -21,6 +22,7 @@ export class HomeProductsComponent {
   private readonly cartService = inject(CartService)
   private readonly toaster = inject(ToastrService)
   private readonly auth = inject(AuthService)
+  private readonly wishService = inject(WishlistService)
   sub: any;
 
   getProducts() {
@@ -44,6 +46,19 @@ export class HomeProductsComponent {
     })
 
 
+  }
+  addProductToWish(id: string) {
+    this.auth.verifyToken().subscribe({
+      next: (res) => {
+
+        this.sub = addToWish(id, this.toaster, this.wishService)
+
+      },
+      error: (err) => {
+        this.toaster.info('Please login to add products to wishlist')
+
+      }
+    })
   }
   ngOnDestroy(): void {
     if (this.sub) {

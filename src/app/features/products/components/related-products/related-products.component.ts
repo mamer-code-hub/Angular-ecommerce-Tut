@@ -2,9 +2,10 @@ import { Component, inject, Input } from '@angular/core';
 import { ProductCardComponent } from "../product-card/product-card.component";
 import { Iproduct } from '../../models/iproduct';
 import { CartService } from '../../../cart/services/cart.service';
-import { addToCart } from '../../../../shared/helpers/operations';
+import { addToCart, addToWish } from '../../../../shared/helpers/operations';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../../Authentication/services/auth.service';
+import { WishlistService } from '../../../wishlist/services/wishlist.service';
 
 @Component({
   selector: 'app-related-products',
@@ -17,6 +18,7 @@ export class RelatedProductsComponent {
   private readonly cartService = inject(CartService)
   private readonly toaster = inject(ToastrService)
   private readonly auth = inject(AuthService)
+  private readonly wishService = inject(WishlistService)
   sub: any;
 
   addProductToCart(id: string) {
@@ -32,6 +34,21 @@ export class RelatedProductsComponent {
 
 
   }
+  addProductToWish(id: string) {
+    this.auth.verifyToken().subscribe({
+      next: (res) => {
+
+        this.sub = addToWish(id, this.toaster, this.wishService)
+
+      },
+      error: (err) => {
+        this.toaster.info('Please login to add products to wishlist')
+
+      }
+    })
+  }
+
+
   ngOnDestroy(): void {
     if (this.sub) {
       this.sub.unsubscribe();

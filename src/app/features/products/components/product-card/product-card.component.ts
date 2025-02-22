@@ -12,9 +12,13 @@ export class ProductCardComponent {
 
   @Input() product: Iproduct = {} as Iproduct;
   @Output() addToCart = new EventEmitter<string>();
+  @Output() addToWish = new EventEmitter<string>();
 
   onAddToCart() {
     this.addToCart.emit(this.product._id);
+  }
+  onAddToWish() {
+    this.addToWish.emit(this.product._id);
   }
 
 

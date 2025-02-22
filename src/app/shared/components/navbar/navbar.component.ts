@@ -12,7 +12,7 @@ export class NavbarComponent {
   private authService = inject(AuthService)
   isAuthenticated!: boolean;
 
-  isAuth() {
+  isAuth() {  
     this.authService.isLoggedIn.subscribe({
       next: (value) => {
         this.isAuthenticated = value

@@ -18,9 +18,12 @@ export class AppComponent {
     this.auth.verifyToken().subscribe({
       next: () => {
         this.auth.isLoggedIn.next(true)
+        // this.auth.navigateToHome()
       },
       error: () => {
         this.auth.isLoggedIn.next(false)
+        // this.auth.navigateToHome()
+
       }
     })
   }

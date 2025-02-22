@@ -1,1 +1,21 @@
-<p>wishlist works!</p>
+
+@if (wishItems['data']!.length > 0) {
+<section class="bg-white py-8 antialiased dark:bg-gray-900 md:py-16">
+  <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
+    <div class="flex justify-between mb-10 items-center">
+      <h2 class="text-2xl capitalize font-semibold text-gray-900 dark:text-white">
+        Your Wishlist
+      </h2>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+      <!-- Product Card -->
+       @for (wishItem of wishItems.data; track $index) {
+         <app-wishlist-card (addToCart)="addProductToCart($event)" (removeWishItem)="removeItem($event)" [wishItem]="wishItem"  />
+       }
+      <!-- Duplicate the above product card for other products with different details -->
+    </div>
+  </div>
+</section>
+}@else {
+  <app-empty-wish />
+}

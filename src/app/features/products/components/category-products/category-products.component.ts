@@ -5,9 +5,10 @@ import { ProductCardComponent } from "../../../products/components/product-card/
 import { PaginationComponent } from "../../../../shared/components/pagination/pagination.component";
 import { ProductsService } from '../../services/products.service';
 import { CartService } from '../../../cart/services/cart.service';
-import { addToCart } from '../../../../shared/helpers/operations';
+import { addToCart, addToWish } from '../../../../shared/helpers/operations';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../../Authentication/services/auth.service';
+import { WishlistService } from '../../../wishlist/services/wishlist.service';
 
 @Component({
   selector: 'category-products',
@@ -20,6 +21,7 @@ export class CategoryProductsComponent {
   private readonly productsService = inject(ProductsService)
   private readonly cartService = inject(CartService)
   private readonly toaster = inject(ToastrService)
+  private readonly wishService = inject(WishlistService)
 
   catId!: string | null
   catProds: Iproduct[] = [];
@@ -68,6 +70,19 @@ export class CategoryProductsComponent {
       }
     })
 
+  }
+  addProductToWish(id: string) {
+    this.auth.verifyToken().subscribe({
+      next: (res) => {
+
+        this.sub = addToWish(id, this.toaster, this.wishService)
+
+      },
+      error: (err) => {
+        this.toaster.info('Please login to add products to wishlist')
+
+      }
+    })
   }
   ngOnDestroy(): void {
     if (this.sub) {
