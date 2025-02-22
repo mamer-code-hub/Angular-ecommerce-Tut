@@ -4,7 +4,7 @@
       <img src="/imgs/noon-logo-en.svg" class="h-6" alt="freshCart Logo" />
     </a>
     
-<form class="w-200">   
+<form class="w-180">   
   <label for="search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
   <div class="relative">
       <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
@@ -31,18 +31,21 @@
       <ul
         class="nav-list bg-nav flex justify-content-start items-center space-x-6">
         <li>
-          <a routerLink="/cart" class="nav-link text-gray-700 -tracking-[1px] cursor-pointer hover:text-gray-400 transition duration-300 ease-in-out text-base" aria-current="page">cart <i class="fa-solid fa-cart-shopping text-amber-500"></i></a>
+          <a routerLink="/products" class="nav-link text-gray-700 -tracking-[1px] cursor-pointer hover:text-gray-400 transition duration-300 ease-in-out text-base" aria-current="page">Products <i class="fa-solid fa-list text-amber-500 pl-1"></i></a>
+        </li>
+        <li>
+          <span class="flex items-center gap-1 before:content-[''] before:w-[1px] before:bg-gray-400 before:inline-block before:h-[18px]"></span>
+        </li>
+        <li>
+          <a routerLink="/cart" class="nav-link text-gray-700 -tracking-[1px] cursor-pointer hover:text-gray-400 transition duration-300 ease-in-out text-base" aria-current="page">cart <i class="fa-solid fa-cart-shopping text-amber-500 pl-1"></i></a>
         </li>
         <li>
           <span class="flex items-center gap-1 before:content-[''] before:w-[1px] before:bg-gray-400 before:inline-block before:h-[18px]"></span>
         </li>
         <li>
           <a routerLink="/wishlist" class="nav-link text-gray-700 -tracking-[1px] cursor-pointer hover:text-gray-400 transition duration-300 ease-in-out text-base">
-            wishlist <i class="fa-regular fa-heart text-red-500"></i></a>
+            wishlist <i class="fa-regular fa-heart text-red-500 pl-1"></i></a>
         </li>
-        <li>
-            <span class="flex items-center gap-1 before:content-[''] before:w-[1px] before:bg-gray-400 before:inline-block before:h-[18px]"></span>
-          </li>
         <li>
           <div class="relative">
             <img id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" class="w-10 h-10 rounded-full cursor-pointer ring-3 ring-gray-50 dark:ring-gray-50" src="/imgs/people/profile-picture-5.jpg" alt="User dropdown">
