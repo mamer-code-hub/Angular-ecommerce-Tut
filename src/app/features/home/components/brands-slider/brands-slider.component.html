@@ -6,27 +6,13 @@
       </h2>
       <button routerLink="/brands" type="button"
         class="view-all">View All</button>
-
     </div>
-
-
-
     <div class="grid gap-10 grid-cols-12">
-
       @for (b of brands; track b._id) {
-
       <div class="sm:cols-span-6 cursor-pointer md:col-span-4 col-span-12">
         <app-brand-card [brand]="b" />
       </div>
       }
-
     </div>
   </div>
-
-
-
-
-
-
-
 </section>

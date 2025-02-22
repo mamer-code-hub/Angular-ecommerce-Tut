@@ -26,7 +26,6 @@
             </div>
           } -->
 
-
         </div>
 
       </div>
@@ -37,46 +36,33 @@
           {{ product.title }}
         </h3>
 
-        <div class="flex items-center gap-5 mt-3">
+        <div class="flex items-center gap-3 mt-3">
           <span>
             <i class="fa-solid fa-star text-rating"></i>
 
-            {{product.ratingsAverage}}({{product.ratingsQuantity}})
+            {{ product.ratingsAverage }} ({{ product.ratingsQuantity }})
           </span>
-
 
           @if (product.quantity > 0) {
           <span
-            class="text-green-500 flex items-center gap-4 before:content-[''] before:w-[3px] before:bg-gray-900 before:inline-block before:h-[20px] ">In
+            class="text-green-500 flex items-center gap-2 before:content-[''] before:w-[2px] before:bg-gray-300 before:inline-block before:h-[20px]">In
             Stock</span>
           }@else {
           <span
-            class="text-gray-500 flex items-center gap-4 before:content-[''] before:w-[3px] before:bg-gray-900 before:inline-block before:h-[20px]">Out
+            class="text-gray-500 flex items-center gap-2 before:content-[''] before:w-[2px] before:bg-gray-300 before:inline-block before:h-[20px]">Out
             of Stock</span>
           }
-
-
-
         </div>
 
-
         <p class="my-3 text-2xl font-bold">
-          {{ product.price }} EGP
+          <span class="text-gray-500">{{ product.price | numberFormat }}</span> EGP
         </p>
 
         <p class="text-gray-700 my-3">
           {{ product.description }}
         </p>
 
-
-
-
         <div class="mt-7 flex gap-10 justify-end">
-
-
-
-
-
           <div class="relative flex items-center max-w-[8rem]">
             <button type="button" id="decrement-button" data-input-counter-decrement="quantity-input"
               class="bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
@@ -106,40 +92,15 @@
             Add to Cart
           </button>
 
-
           <button
             class="border border-gray-400 hover:bg-red-500 hover:border-red-500 hover:text-white px-5 rounded-xl cursor-pointer ">
             <i class="fa-regular fa-heart text-xl"></i>
           </button>
-
-
-
-
-
-
         </div>
-
       </div>
-
-
     </div>
 
-
     <app-related-products [relatedProds]="relatedProducts" />
-
-
     <app-pagination [totalPages]="totalPages" (currentPageChange)="getPage($event)" />
-
   </div>
-
-
-
-
-
-
-
-
-
-
-
 </section>

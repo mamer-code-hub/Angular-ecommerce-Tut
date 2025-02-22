@@ -1,10 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Product } from '../../models/cart.interfaces';
 import { RouterLink } from '@angular/router';
+import { NumberFormatPipe } from '../../../../shared/components/pipes/number-format.pipe';
 
 @Component({
   selector: 'app-cart-item',
-  imports: [RouterLink],
+  imports: [RouterLink, NumberFormatPipe],
   templateUrl: './cart-item.component.html',
   styleUrl: './cart-item.component.css'
 })

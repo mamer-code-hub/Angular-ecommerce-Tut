@@ -26,7 +26,8 @@
 
   <div class="flex justify-between">
     <span>
-      EGP <span class="font-bold">{{product.price}}</span>
+      <span class="text-gray-500">EGP </span>
+      <span class="font-bold">{{ product.price | numberFormat }}</span>
     </span>
     <span class="flex gap-1 bg-white  text-sm  rounded-full items-center ">{{product.ratingsAverage}}<i
         class="fa-solid fa-star text-rating "></i></span>

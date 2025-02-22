@@ -1,13 +1,14 @@
-import { Component, inject, OnChanges, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Iproduct } from '../../models/iproduct';
 import { ProductsService } from '../../services/products.service';
 import { RelatedProductsComponent } from "../related-products/related-products.component";
 import { PaginationComponent } from "../../../../shared/components/pagination/pagination.component";
+import { NumberFormatPipe } from '../../../../shared/components/pipes/number-format.pipe';
 
 @Component({
   selector: 'app-product-details',
-  imports: [RelatedProductsComponent, PaginationComponent],
+  imports: [RelatedProductsComponent, PaginationComponent, NumberFormatPipe],
   templateUrl: './product-details.component.html',
   styleUrl: './product-details.component.css'
 })
