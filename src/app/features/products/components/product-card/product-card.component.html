@@ -19,6 +19,16 @@
 
   <p class="my-4 font-bold line-clamp-1">{{ product.description }}</p>
 
+  <!-- Scrollable News Bar Section -->
+  <div class="news-bar bg-gray-200 text-gray-500 py-0.5 my-2 rounded">
+    <div class="marquee flex gap-8 animate-marquee">
+      @for (newsItem of randomNewsItems; track $index) {
+        <i [class]="newsItem.icon" class="mr-1 py-1 text-sky-400"></i>
+        <span>{{ newsItem.text }}</span>
+      }
+    </div>
+  </div>
+
   <div class="flex justify-between">
     <span>
       <span class="text-gray-500">EGP </span>
