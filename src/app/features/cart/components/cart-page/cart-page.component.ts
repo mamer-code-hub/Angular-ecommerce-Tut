@@ -7,10 +7,11 @@ import { redirectToLogin } from '../../../../shared/helpers/redirect';
 import { AuthService } from '../../../Authentication/services/auth.service';
 import { Subscription } from 'rxjs';
 import { CartEmptyComponent } from "../cart-empty/cart-empty.component";
+import { NumberFormatPipe } from "../../../../shared/components/pipes/number-format.pipe";
 
 @Component({
   selector: 'app-cart-page',
-  imports: [CartItemComponent, RouterLink, CartEmptyComponent],
+  imports: [CartItemComponent, RouterLink, CartEmptyComponent, NumberFormatPipe],
   templateUrl: './cart-page.component.html',
   styleUrl: './cart-page.component.css'
 })

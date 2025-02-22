@@ -1,17 +1,59 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>EcommerceApp</title>
-  <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="/imgs/favicon-32x32 (1).png">
-  <style>
-  @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+<!DOCTYPE html>
+<html lang="en" class="light">
+  <head>
+    <meta charset="utf-8" />
+    <title>E-commerce</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="/imgs/favicon-32x32 (1).png" />
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+      </style>
+    <script>
+      // On page load, check the saved theme preference in localStorage
+      document.addEventListener("DOMContentLoaded", () => {
+        if (
+          localStorage.getItem("color-theme") === "dark" ||
+          (!("color-theme" in localStorage) &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches)
+        ) {
+          document.documentElement.classList.add("dark");
+          document.querySelector("#theme-icon").classList.remove("fa-sun");
+          document.querySelector("#theme-icon").classList.add("fa-moon");
+        } else {
+          document.documentElement.classList.remove("dark");
+          document.querySelector("#theme-icon").classList.remove("fa-moon");
+          document.querySelector("#theme-icon").classList.add("fa-sun");
+        }
+      });
 
-  </style>
-</head>
-<body class="font-main">
-  <app-root></app-root>
-</body>
+      // Function to toggle the theme using the icon click
+      function toggleTheme() {
+        const icon = document.querySelector("#theme-icon");
+        if (document.documentElement.classList.contains("dark")) {
+          document.documentElement.classList.remove("dark");
+          localStorage.setItem("color-theme", "light");
+          icon.classList.remove("fa-moon");
+          icon.classList.add("fa-sun");
+        } else {
+          document.documentElement.classList.add("dark");
+          localStorage.setItem("color-theme", "dark");
+          icon.classList.remove("fa-sun");
+          icon.classList.add("fa-moon");
+        }
+      }
+    </script>
+  </head>
+  <body class="font-main">
+    <!-- Use icons for light/dark mode toggle -->
+    <div class="fixed right-4 top-1/2 -translate-y-1/2 z-50 p-3 bg-white dark:bg-gray-800 rounded-full shadow-lg hover:scale-110 transition-all">
+      <i
+        id="theme-icon"
+        class="fas fa-sun text-gray-600 dark:text-yellow-400 text-2xl cursor-pointer hover:text-orange-500 dark:hover:text-yellow-300 transition-colors"
+        onclick="toggleTheme()"
+      ></i>
+    </div>
+    
+    <app-root></app-root>
+  </body>
 </html>
