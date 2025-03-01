@@ -36,6 +36,8 @@ export class WishlistComponent implements OnInit {
     this.sub = this.wishService.getUserWishList().subscribe({
       next: (res) => {
         this.wishItems = res
+        this.wishService.wishCount.next(res.count)
+
       },
       error: (err) => {
         console.log(err)
@@ -46,7 +48,8 @@ export class WishlistComponent implements OnInit {
   removeItem(itemId: string) {
     this.wishService.removeWishItem(itemId).subscribe({
       next: (res) => {
-        this.getUserWishList()
+        this.wishService.wishCount.next(res.data.length)
+
         this.toatser.info("Removed From Wish List", '')
       },
       error: (err) => {
@@ -57,10 +60,7 @@ export class WishlistComponent implements OnInit {
   }
 
   addProductToCart(id: string) {
-
     this.sub = addToCart(id, this.toatser, this.cartService)
-
-
   }
 
 

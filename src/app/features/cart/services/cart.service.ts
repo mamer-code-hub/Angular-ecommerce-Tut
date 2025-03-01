@@ -2,12 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AuthService } from '../../Authentication/services/auth.service';
 import { env } from '../../../../environments/environments';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
+
+  cartCount=new BehaviorSubject<number>(0);
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 

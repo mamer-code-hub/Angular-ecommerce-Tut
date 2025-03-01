@@ -10,6 +10,7 @@ export const addToCart = (id: string,
 
   return cartService.addProduct(id).subscribe({
     next: (res: any) => {
+      cartService.cartCount.next(res.numOfCartItems)
       showToaster("Product Added Successfully To Cart", toaster)
     },
     error: (err: any) => {
@@ -25,11 +26,9 @@ export const addToWish = (id: string,
   toaster: ToastrService,
   wishService: WishlistService): any => {
 
-  
-
-
   return wishService.addProduct(id).subscribe({
     next: (res: any) => {
+      wishService.wishCount.next(res.data.length)
       showToaster("Product Added Successfully To Wishlist", toaster)
     },
     error: (err: any) => {

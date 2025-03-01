@@ -35,11 +35,10 @@ export class ProductListComponent {
     })
   }
   addProductToCart(id: string) {
-    this.auth.isLoggedIn.subscribe({
-      next: (isLoggedIn) => {
-        if (isLoggedIn) {
-          this.sub = addToCart(id, this.toaster, this.cartService)
-        }
+    this.auth.verifyToken().subscribe({
+      next: (res) => {
+        this.sub = addToCart(id, this.toaster, this.cartService)
+
       }, error: (err) => {
         this.toaster.info('Please login to add products to cart')
 

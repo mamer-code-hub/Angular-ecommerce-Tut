@@ -65,7 +65,7 @@ export class CategoryProductsComponent {
         this.sub = addToCart(id, this.toaster, this.cartService)
       },
       error: (err) => {
-        this.toaster.warning('Please login to add products to cart')
+        this.toaster.info('Please login to add products to cart')
 
       }
     })

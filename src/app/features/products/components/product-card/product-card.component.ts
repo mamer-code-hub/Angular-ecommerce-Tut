@@ -1,15 +1,17 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnInit, OnDestroy, Inject, PLATFORM_ID } from '@angular/core';
 import { Iproduct } from '../../models/iproduct';
 import { RouterLink } from '@angular/router';
 import { NumberFormatPipe } from "../../../../shared/components/pipes/number-format.pipe";
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-product-card',
   imports: [RouterLink, NumberFormatPipe],
   templateUrl: './product-card.component.html',
-  styleUrl: './product-card.component.css'
+  styleUrls: ['./product-card.component.css']
 })
-export class ProductCardComponent {
+export class ProductCardComponent implements OnInit, OnDestroy {
+  [x: string]: any;
 
   @Input() product: Iproduct = {} as Iproduct;
   @Output() addToCart = new EventEmitter<string>();
@@ -24,41 +26,55 @@ export class ProductCardComponent {
   ];
 
   randomNewsItems: Array<{ text: string, icon: string }> = [];
-  
-  // Declare intervalId to keep track of the interval
   intervalId: any;
 
+  constructor(@Inject(PLATFORM_ID) private platformId: any) {}
+
   ngOnInit() {
-    this.generateRandomNews();
-    this.startNewsInterval();
+    // Validate product input
+    if (!this.product || !this.product._id) {
+      return;
+    }
+
+    // Run interval logic only in the browser
+    if (isPlatformBrowser(this.platformId)) {
+      this.generateRandomNews();
+      this.startNewsInterval();
+    }
   }
 
   ngOnDestroy() {
-    // Clean up interval when the component is destroyed
-    if (this.intervalId) {
+    // Clean up interval to prevent memory leak, only if running on the browser
+    if (this.intervalId && isPlatformBrowser(this.platformId)) {
       clearInterval(this.intervalId);
+      console.log('Interval cleared');
     }
   }
 
   startNewsInterval() {
-    this.intervalId = setInterval(() => {
-      this.generateRandomNews();
-    }, 5000); // Change news every 5 seconds
+      this.intervalId = setInterval(() => {
+        this.generateRandomNews();
+      }, 5000); // Change news every 5 seconds
   }
 
   generateRandomNews() {
-    this.randomNewsItems = [];
-    const randomIndexes = Array.from({ length: 3 }, () => Math.floor(Math.random() * this.newsItems.length));
-    randomIndexes.forEach(index => {
-      this.randomNewsItems.push(this.newsItems[index]);
-    });
+      this.randomNewsItems = [];
+      const randomIndexes = Array.from({ length: 3 }, () => Math.floor(Math.random() * this.newsItems.length));
+
+      randomIndexes.forEach(index => {
+        this.randomNewsItems.push(this.newsItems[index]);
+      });
   }
 
   onAddToCart() {
-    this.addToCart.emit(this.product._id);
-  }
-  onAddToWish() {
-    this.addToWish.emit(this.product._id);
+    if (this.product && this.product._id) {
+      this.addToCart.emit(this.product._id);
+    }
   }
 
+  onAddToWish() {
+    if (this.product && this.product._id) {
+      this.addToWish.emit(this.product._id);
+    }
+  }
 }

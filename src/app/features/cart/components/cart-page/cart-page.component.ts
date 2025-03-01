@@ -44,6 +44,7 @@ export class CartPageComponent {
   removeItem(itemId: string) {
     this.cartService.removeCartItem(itemId).subscribe({
       next: (res) => {
+        this.cartService.cartCount.next(res.numOfCartItems)
         this.cartItems = res
       },
       error: (err) => {

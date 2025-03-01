@@ -86,13 +86,14 @@
             </button>
           </div>
 
-          <button [disabled]="product.quantity <= 0"
+          <button (click)="addProductToCart()" [disabled]="product.quantity <= 0"
             class="bg-rating grow hover:bg-rating/80 cursor-pointer text-white font-bold py-3 px-4 rounded-lg"
             type="submit">
             Add to Cart
           </button>
 
-          <button
+
+          <button (click)="addProductToWish()"
             class="border border-gray-400 hover:bg-red-500 hover:border-red-500 hover:text-white px-5 rounded-xl cursor-pointer ">
             <i class="fa-regular fa-heart text-xl"></i>
           </button>

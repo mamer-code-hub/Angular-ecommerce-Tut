@@ -10,8 +10,8 @@ export class CategoriesService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getCategories(): Observable<any> {
-    return this.httpClient.get(env.BASE_URL + 'categories');
+  getCategories(page:number=1): Observable<any> {
+    return this.httpClient.get(env.BASE_URL + 'categories?limit=5&page='+page);
   }
 
 

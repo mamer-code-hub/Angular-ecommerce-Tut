@@ -1,0 +1,27 @@
+<section class="py-10">
+  <div class="container max-w-screen-xl mx-auto ">
+    <div class="flex items-center justify-between">
+      <h2 class="header">
+        Our <span class="text-nav ms-1">categories</span>
+      </h2>
+
+    </div>
+
+    <div class="grid gap-10 grid-cols-12">
+
+      @for (cat of cats; track cat._id) {
+      <div class="sm:cols-span-6 cursor-pointer md:col-span-4 col-span-12">
+        <app-cat-card [cat]="cat" />
+      </div>
+      }
+    </div>
+
+
+
+
+    <app-pagination [totalPages]="totalPages" (currentPageChange)="getPage($event)" />
+
+
+  </div>
+
+</section>

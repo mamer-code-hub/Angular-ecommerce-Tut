@@ -19,15 +19,10 @@ export class OrderService {
     city: string,
   }): Observable<any> {
     const url = 'http://localhost:4200'
-    return this.http.post(env.BASE_URL + `orders/checkout-session/` + `${cartId}/` + url,
+    return this.http.post(env.BASE_URL+`orders/checkout-session/` + `${cartId}/` + url,
       {
         shippingAddress
-      },
-    {
-      headers: {
-        token: this.authService.getToken()!
-      }
-    })
+      })
 
   }
 }

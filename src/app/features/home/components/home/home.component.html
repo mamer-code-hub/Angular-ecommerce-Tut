@@ -4,8 +4,13 @@
 <app-brands-slider />
 <app-home-products />
 
-@for (catId of catIds; track catId) {<specific-category-products
-  [catId]="catId"
-  />}
-  
-<app-footer />
+@for (catId of catIds; track catId) {
+@defer (on viewport) {
+<specific-category-products [catId]="catId" />
+}@placeholder {
+<p>
+  Loading specific category products...
+</p>
+}
+
+}

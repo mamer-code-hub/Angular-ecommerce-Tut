@@ -26,7 +26,6 @@ export class BrandsComponent {
     })
   }
 
-
   getPage(e: number) {
     this.currentPage = e
     this.getBrands()

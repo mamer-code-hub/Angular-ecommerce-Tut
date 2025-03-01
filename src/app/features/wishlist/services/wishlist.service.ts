@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { env } from './../../../../environments/environments.prod';
 import { AuthService } from '../../Authentication/services/auth.service';
 
@@ -8,6 +8,7 @@ import { AuthService } from '../../Authentication/services/auth.service';
   providedIn: 'root'
 })
 export class WishlistService {
+  wishCount = new BehaviorSubject<number>(0)
 
   constructor(private http: HttpClient,private auth:AuthService) { }
 
